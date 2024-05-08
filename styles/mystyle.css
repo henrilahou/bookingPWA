@@ -1,0 +1,93 @@
+:root{
+    --primary: #82F5FF;
+    --secondary:#00D4E6;
+    --title: #00ACCD;
+}
+
+nav{
+    background: var(--primary);
+    border-bottom: 10px solid var(--secondary);
+}
+
+nav a{
+    color: var(--title);
+}
+
+nav a span{
+    font-weight: bold;
+}
+
+nav .sidenav-trigger{
+    margin: 0;
+}
+
+
+/* layout pinouts */
+.connectors{
+    margin-top: 20px;
+}
+
+.card-panel.connector{
+    border-radius: 8px;
+    padding: 10PX;
+
+    display: grid;
+    grid-template-columns: 2fr 6fr 1fr;
+    grid-template-areas: "image details delete";
+    position: relative;
+}
+
+.connector img{
+    /* Naam geven aan de area, zodat die gekoppeld kan worden met hogerop... */
+    grid-area: image;
+    max-width: 80px;
+    margin-top: 6px;
+}
+
+.connector-details{
+    grid-area: details;
+    margin-top: 6px;
+}
+
+.connector-delete{
+    grid-area: delete;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+}
+
+.connector-delete i{
+    font-size: 18px;
+}
+
+.connector-title{
+    font-weight: bold;
+}
+
+.connector-general-description, .connector-table{
+    font-size: 0.8em;
+}
+
+.connector-table td, .connector-table th{
+    padding: 5px 0px;
+}
+
+/* layout form-styles */
+.add-btn{
+    /* !important overschrijft eventuele tegenstrijdige instellingen. */
+    background: var(--title) !important;
+    margin-bottom: 15px;
+}
+
+input{
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+}
+
+.side-form button{
+    background: var(--title);
+}
+
+form .input-field{
+    margin-top: 30px;
+}
