@@ -1,6 +1,13 @@
 // auth.js
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBYXCSVFFH-BlIS9c2DYPtWNu7SvujGWvw",
@@ -14,15 +21,35 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getFirestore(app);
 
 // Register function
-export function register(email, password) {
-    return createUserWithEmailAndPassword(auth, email, password);
+export async function register(email, password) {
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    await setDoc(doc(db, "users", userCredential.user.uid), {
+        email: email,
+        uid: userCredential.user.uid,
+        createdAt: new Date()
+    });
+    return userCredential;
 }
 
 // Login function
-export function login(email, password) {
-    return signInWithEmailAndPassword(auth, email, password);
+export async function login(email, password) {
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    const userDoc = await getDoc(doc(db, "users", userCredential.user.uid));
+    if (!userDoc.exists()) {
+        await setDoc(doc(db, "users", userCredential.user.uid), {
+            email: email,
+            uid: userCredential.user.uid,
+            lastLogin: new Date()
+        });
+    } else {
+        await setDoc(doc(db, "users", userCredential.user.uid), {
+            lastLogin: new Date()
+        }, { merge: true });
+    }
+    return userCredential;
 }
 
 // Logout function
@@ -34,9 +61,9 @@ export function logout() {
 onAuthStateChanged(auth, user => {
     if (user) {
         console.log("User is signed in:", user);
-        // Handle logged in state
+        // Additional code to handle user's state or navigate
     } else {
         console.log("No user is signed in.");
-        // Handle logged out state
+        // Additional code to handle unauthenticated state
     }
 });

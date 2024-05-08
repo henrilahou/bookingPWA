@@ -4,24 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Booking PWA Home</title>
-
-    <!-- Google Icon Font -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-    <!-- Materialize CSS from CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
-    <!-- Custom styles -->
     <link rel="stylesheet" href="styles/mystyle.css">
-
-    <!-- Web App Manifest -->
     <link rel="manifest" href="manifest.json">
-
-    <!-- Theme Color for Chrome -->
     <meta name="theme-color" content="#00ACCD">
 </head>
 <body class="grey lighten-4">
-    <!-- Navigation -->
     <nav class="z-depth-0">
         <div class="nav-wrapper container">
             <a href="index.html" class="brand-logo">Booking<span>PWA</span></a>
@@ -32,41 +21,25 @@
             </ul>
         </div>
     </nav>
-
-    <!-- Mobile Navigation -->
     <ul class="sidenav" id="mobile-demo">
         <li><a href="pages/about.html">About</a></li>
         <li><a href="pages/booking.html">Book Meeting</a></li>
     </ul>
-
-    <!-- Main Content Container -->
     <div class="container">
-        <!-- Upcoming Bookings -->
         <div class="section">
             <h5>Upcoming Bookings</h5>
-            <div class="row">
-                <!-- Dynamic content will be loaded here -->
+            <div class="upcoming-bookings">
+                <!-- Dynamic upcoming bookings will be loaded here -->
             </div>
         </div>
-
-        <!-- Recent Activities -->
         <div class="section">
             <h5>Recent Activities</h5>
-            <ul class="collection">
-                <!-- Dynamic content will be loaded here -->
+            <ul class="recent-activities">
+                <!-- Dynamic recent activities will be loaded here -->
             </ul>
         </div>
     </div>
-
-    <!-- Materialize JS from CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
-    <!-- Initialize components -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var elems = document.querySelectorAll('.sidenav');
-            var instances = M.Sidenav.init(elems);
-        });
-    </script>
+    <script src="scripts/home.js" type="module"></script>
 </body>
 </html>
