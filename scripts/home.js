@@ -1,7 +1,9 @@
 //home.js
 // Import Firebase modules with Firestore query functionalities
 import { db, auth } from './firebase-config.js';
+import { doc, getDoc } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
 import { collection, query, where, orderBy, limit, getDocs } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
+import { displayQRCode } from './displayQRCode.js';  // Assuming displayQRCode.js is correctly set up to export this function
 
 document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.sidenav');
@@ -9,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     auth.onAuthStateChanged(user => {
         if (user) {
+            fetchUserDetailsAndDisplayQRCode(user.uid);
             fetchUpcomingBookings(user.uid);
             fetchRecentActivities();
         } else {
@@ -16,6 +19,24 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+function fetchUserDetailsAndDisplayQRCode(userId) {
+    const userRef = doc(db, "users", userId);
+    getDoc(userRef).then((doc) => {
+        if (doc.exists()) {
+            const userData = doc.data();
+            if (userData.qrCode) {
+                displayQRCode(userData.qrCode);  // Function to display QR code on the page
+            } else {
+                console.log("QR Code not found for user.");
+            }
+        } else {
+            console.log("User data not found.");
+        }
+    }).catch(error => {
+        console.error("Error fetching user details:", error);
+    });
+}
 
 function fetchUpcomingBookings(userId) {
     const bookingsRef = collection(db, 'bookings');
