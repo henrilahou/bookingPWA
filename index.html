@@ -3,129 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>... Connector App ...</title>
+    <title>Booking PWA Home</title>
 
-    <!--Google Icon Font importeren-->
+    <!-- Google Icon Font -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <!-- materialize.css importeren (via CDN) -->
+    <!-- Materialize CSS from CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
+    <!-- Custom styles -->
     <link rel="stylesheet" href="styles/mystyle.css">
 
-    <!-- Maak een verwijzing naar het manifest. -->
+    <!-- Web App Manifest -->
     <link rel="manifest" href="manifest.json">
 
+    <!-- Theme Color for Chrome -->
     <meta name="theme-color" content="#00ACCD">
 </head>
 <body class="grey lighten-4">
-    <!-- Bovenste navigatie maken. -->
+    <!-- Navigation -->
     <nav class="z-depth-0">
         <div class="nav-wrapper container">
-            <a href="index.html">Connector <span>PWA</span></a>
-            <span class="right grey-text text-darken-1">
-                <!-- Voor gebruik van iconen, zie: https://materializecss.com/icons.html -->
-                <i class="material-icons sidenav-trigger" data-target="side-menu">menu</i>
-            </span>
+            <a href="index.html" class="brand-logo">Booking<span>PWA</span></a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="pages/about.html">About</a></li>
+                <li><a href="pages/booking.html">Book Meeting</a></li>
+            </ul>
         </div>
     </nav>
 
-    <!-- side nav -->
-    <ul id="side-menu" class="sidenav side-menu">
-        <li><a class="subheader">Connector PWA</a></li>
-        <li><a href="index.html" class="waves-effect">Home</a></li>
-        <li><a href="pages/about.html" class="waves-effect">About</a></li>
+    <!-- Mobile Navigation -->
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="pages/about.html">About</a></li>
+        <li><a href="pages/booking.html">Book Meeting</a></li>
     </ul>
 
-    <!-- Connectorinformatie toevoegen. -->
-    <div class="connectors container grey-text text-darken-2">
-        <!-- TODO: connectoren in commentaar zetten, omdat ze nu uit de Firestore database worden opgehaald. -->
-        <!-- <div class="card-panel connector white row">
-            <img src="images/db9.jpg" alt="connector thumb">
-            <div class="connector-details">
-                <div class="connector-title">DB9</div>
-                <div class="connector-general-description">Connecter often used in serial communication.</div>
-            </div>
-            <div class="connector-delete">
-                <i class="material-icons">delete_outline</i>
+    <!-- Main Content Container -->
+    <div class="container">
+        <!-- Upcoming Bookings -->
+        <div class="section">
+            <h5>Upcoming Bookings</h5>
+            <div class="row">
+                <!-- Dynamic content will be loaded here -->
             </div>
         </div>
 
-        <div class="card-panel connector white row">
-            <img src="images/db9.jpg" alt="connector thumb">
-            <div class="connector-details">
-                <div class="connector-title">DB9</div>
-                <div class="connector-general-description">Connecter often used in serial communication.</div>
-            </div>
-            <div class="connector-delete">
-                <i class="material-icons">delete_outline</i>
-            </div>
+        <!-- Recent Activities -->
+        <div class="section">
+            <h5>Recent Activities</h5>
+            <ul class="collection">
+                <!-- Dynamic content will be loaded here -->
+            </ul>
         </div>
-
-        <div class="card-panel connector white row">
-            <img src="images/db9.jpg" alt="connector thumb">
-            <div class="connector-details">
-                <div class="connector-title">DB9</div>
-                <div class="connector-general-description">Connecter often used in serial communication.</div>
-            </div>
-            <div class="connector-delete">
-                <i class="material-icons">delete_outline</i>
-            </div>
-        </div>
-
-        <div class="card-panel connector white row">
-            <img src="images/db9.jpg" alt="connector thumb">
-            <div class="connector-details">
-                <div class="connector-title">DB9</div>
-                <div class="connector-general-description">Connecter often used in serial communication.</div>
-            </div>
-            <div class="connector-delete">
-                <i class="material-icons">delete_outline</i>
-            </div>
-        </div> -->
     </div>
 
-    <!-- Add button toevoegen onderaan in het centrum. -->
-    <div class="center">
-        <a class="btn-floating btn-small btn-large add-btn sidenav-trigger" data-target="side-form">
-            <i class="material-icons">add</i>
-        </a>
-    </div>
-
-    <!-- add connector side nav -->
-    <div id="side-form" class="sidenav side-form">
-        <form class="add-connector container section" id="frmAddConnector">
-            <h6 >New connector</h6>
-            <div class="divider"></div>
-            <div class="input-field">
-                <!-- OPM: de klasse validate is een Materialize klasse die een rode lijn onder het vak tekent indien niet ingevuld. -->
-                <input placeholder="e.g. DB9" id="name" type="text" class="validate" required>
-                <label for="name">Connector name</label>
-            </div>
-            <div class="input-field">
-                <input placeholder="e.g. serial communication" id="application" type="text" class="validate" required>
-                <label for="application">Typical application</label>
-            </div>
-            <div class="input-field">
-                <input  placeholder="e.g. db25.jpg" id="image" type="text" class="validate" required>
-                <label for="image">Image</label>
-            </div>
-            <div class="input-field center">
-                <button class="btn-small" type="submit">Add</button>
-            </div>
-        </form>
-    </div>
-
-    <!--Materialize JavaScript at end of body for optimized loading-->
+    <!-- Materialize JS from CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-    <!-- Verwijzing naar eigen script. -->
-    <script src="scripts/myscript.js"></script>
-    <script src="scripts/app.js"></script>
-
-    <!-- TODO: link leggen naar niet 'db.js' bestand. -->
-    <script src="scripts/db.js" type="module"></script>
-    <script src="scripts/auth.js" type="module"></script>
-
+    <!-- Initialize components -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.sidenav');
+            var instances = M.Sidenav.init(elems);
+        });
+    </script>
 </body>
 </html>

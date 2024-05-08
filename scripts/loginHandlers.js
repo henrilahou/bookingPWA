@@ -1,4 +1,4 @@
-// lgoinHandlers.js
+// loginHandlers.js
 import { login, register } from './auth.js';
 
 document.addEventListener('DOMContentLoaded', () => {

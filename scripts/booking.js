@@ -1,16 +1,14 @@
 // booking.js
-// Import Firebase functions and variables from a central config module
-import { db, auth } from './firebase-config.js';  // Assuming firebase-config.js correctly exports these
+import { db, auth } from './firebase-config.js';  // Make sure firebase-config.js correctly exports these
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
 import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
 
 document.addEventListener('DOMContentLoaded', function() {
     let currentUserId = null;
 
-    // Auth state changes
     onAuthStateChanged(auth, (user) => {
         if (user) {
-            currentUserId = user.uid;
+            currentUserId = user.uid;  // Save the logged in user's ID
         } else {
             window.location.href = '../pages/login.html'; // Redirect to login if not logged in
         }
