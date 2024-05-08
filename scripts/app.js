@@ -1,3 +1,4 @@
+// app.js
 // Registreer de Service Worker.
 
 window.addEventListener("load", function(){

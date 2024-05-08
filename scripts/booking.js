@@ -1,3 +1,4 @@
+//booking.js
 document.addEventListener('DOMContentLoaded', function() {
     const videoElem = document.getElementById('qr-video');
     const form = document.getElementById('booking-form');

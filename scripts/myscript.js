@@ -1,3 +1,4 @@
+// myscript.js
 document.addEventListener('DOMContentLoaded', function(){
     var elems = document.querySelectorAll('.side-menu');
     var options = {edge: "right"};

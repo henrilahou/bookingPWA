@@ -1,56 +1,42 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
+// auth.js
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
 
 const firebaseConfig = {
-    apiKey: "your-api-key",
-    authDomain: "your-auth-domain",
-    projectId: "your-project-id",
-    storageBucket: "your-storage-bucket",
-    messagingSenderId: "your-messaging-sender-id",
-    appId: "your-app-id"
+    apiKey: "AIzaSyBYXCSVFFH-BlIS9c2DYPtWNu7SvujGWvw",
+    authDomain: "bookingpwa-6633f.firebaseapp.com",
+    projectId: "bookingpwa-6633f",
+    storageBucket: "bookingpwa-6633f.appspot.com",
+    messagingSenderId: "149584466838",
+    appId: "1:149584466838:web:0c5cf1dfdf1914412783b7",
+    measurementId: "G-ZJWBH9PGQ1"
 };
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// Function to handle user registration
-function register(email, password) {
-    createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            console.log("User registered:", userCredential.user);
-        })
-        .catch((error) => {
-            console.error("Error registering user:", error.message);
-        });
+// Register function
+export function register(email, password) {
+    return createUserWithEmailAndPassword(auth, email, password);
 }
 
-// Function to handle user login
-function login(email, password) {
-    signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            console.log("User logged in:", userCredential.user);
-        })
-        .catch((error) => {
-            console.error("Error logging in:", error.message);
-        });
+// Login function
+export function login(email, password) {
+    return signInWithEmailAndPassword(auth, email, password);
 }
 
-// Function to handle user logout
-function logout() {
-    signOut(auth).then(() => {
-        console.log("User signed out");
-    }).catch((error) => {
-        console.error("Error signing out:", error.message);
-    });
+// Logout function
+export function logout() {
+    return signOut(auth);
 }
 
-// Real-time listener for auth state changes
-onAuthStateChanged(auth, (user) => {
+// Auth state changes
+onAuthStateChanged(auth, user => {
     if (user) {
         console.log("User is signed in:", user);
+        // Handle logged in state
     } else {
         console.log("No user is signed in.");
+        // Handle logged out state
     }
 });
-
-export { register, login, logout };
