@@ -1,40 +1,71 @@
-//booking.js
+// booking.js
+// Import Firebase functions and variables from a central config module
+import { db, auth } from './firebase-config.js';  // Assuming firebase-config.js correctly exports these
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
+
 document.addEventListener('DOMContentLoaded', function() {
+    let currentUserId = null;
+
+    // Auth state changes
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            currentUserId = user.uid;
+        } else {
+            window.location.href = '../pages/login.html'; // Redirect to login if not logged in
+        }
+    });
+
     const videoElem = document.getElementById('qr-video');
-    const form = document.getElementById('booking-form');
     const CodeReader = new ZXing.BrowserMultiFormatReader();
+    const form = document.getElementById('booking-form');
 
-    let currentUserId = null; // This should be fetched based on your authentication method
-    let scannedUserId = '';
+    function setupReader() {
+        CodeReader.listVideoInputDevices()
+            .then((videoInputDevices) => {
+                if (videoInputDevices.length > 0) {
+                    CodeReader.decodeFromVideoDevice(videoInputDevices[0].deviceId, videoElem, (result, err) => {
+                        if (result) {
+                            document.getElementById('bookedWith').value = result.text; // Auto-fill the scanned ID
+                            CodeReader.reset();  // Reset after successful scan
+                        }
+                        if (err && !(err instanceof ZXing.NotFoundException)) {
+                            console.error('Error scanning QR code:', err);
+                        }
+                    });
+                }
+            }).catch((err) => {
+                console.error('Error setting up video input devices:', err);
+            });
+    }
 
-    CodeReader.decodeFromVideoElement(videoElem).then(result => {
-        scannedUserId = result.text;
-        console.log(`Scanned user ID: ${scannedUserId}`);
-    }).catch(err => console.error(err));
+    setupReader();  // Setup QR Code reader on page load
 
     form.addEventListener('submit', async (event) => {
         event.preventDefault();
-        if (!scannedUserId) {
-            M.toast({html: 'No QR code scanned!'});
+        const bookedWith = document.getElementById('bookedWith').value;
+        const time = form.time.value;
+        const location = form.location.value;
+
+        if (!bookedWith) {
+            console.error('No QR code scanned!');
             return;
         }
 
         const bookingDetails = {
             bookedBy: currentUserId,
-            bookedWith: scannedUserId,
-            time: form.time.value,
-            location: form.location.value,
+            bookedWith,
+            time,
+            location,
             status: 'pending'
         };
 
         try {
-            const db = firebase.firestore(); // Make sure db is initialized elsewhere or do it here
-            await db.collection('bookings').add(bookingDetails);
-            M.toast({html: 'Booking created successfully!'});
-            form.reset(); // Reset the form after successful booking
+            await addDoc(collection(db, "bookings"), bookingDetails);
+            console.log('Booking created successfully!');
+            form.reset();
         } catch (error) {
             console.error('Error creating booking:', error);
-            M.toast({html: 'Failed to create booking!'});
         }
     });
 });
