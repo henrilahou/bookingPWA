@@ -10,11 +10,14 @@ document.addEventListener('DOMContentLoaded', function() {
     var instances = M.Sidenav.init(elems);
 
     auth.onAuthStateChanged(user => {
+        const userEmailDisplay = document.getElementById('user-email-display');
         if (user) {
+            userEmailDisplay.textContent = user.email; // Display user email in navbar
             fetchUserDetailsAndDisplayQRCode(user.uid);
             fetchUpcomingBookings(user.uid);
             fetchRecentActivities();
         } else {
+            userEmailDisplay.textContent = 'Not signed in';
             console.log("No user is signed in.");
         }
     });
