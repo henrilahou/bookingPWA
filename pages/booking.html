@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Time</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="../styles/mystyle.css">
+</head>
+<body class="grey lighten-4">
+    <nav class="z-depth-0">
+        <div class="nav-wrapper container">
+            <a href="../index.html">Connector <span>PWA</span></a>
+            <span class="right grey-text text-darken-1">
+                <i class="material-icons sidenav-trigger" data-target="side-menu">menu</i>
+            </span>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h4>Book a Meeting</h4>
+        <form id="booking-form">
+            <div class="input-field">
+                <input id="time" type="text" class="validate" required>
+                <label for="time">Time</label>
+            </div>
+            <div class="input-field">
+                <input id="location" type="text" class="validate" required>
+                <label for="location">Location</label>
+            </div>
+            <button class="btn waves-effect waves-light" type="submit">Book</button>
+        </form>
+        <video id="qr-video" style="width: 100%;"></video>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="../scripts/booking.js"></script>
+    <script src="https://unpkg.com/@zxing/library@latest"></script>
+</body>
+</html>
