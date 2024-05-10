@@ -1,27 +1,65 @@
-<!-- login.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Login and Registration</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="../styles/mystyle.css">
+    <style>
+        .container {
+            margin-top: 50px;
+        }
+        .card {
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Login</h1>
-    <form id="login-form">
-        <input type="email" id="login-email" placeholder="Email">
-        <input type="password" id="login-password" placeholder="Password">
-        <button type="button" id="login-button">Login</button>
-    </form>
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m6 offset-m3">
+                <div class="card">
+                    <h4 class="center-align">Login</h4>
+                    <form id="login-form">
+                        <div class="input-field">
+                            <input type="email" id="login-email" class="validate" required>
+                            <label for="login-email">Email</label>
+                        </div>
+                        <div class="input-field">
+                            <input type="password" id="login-password" class="validate" required>
+                            <label for="login-password">Password</label>
+                        </div>
+                        <button type="button" id="login-button" class="btn waves-effect waves-light">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
 
-    <h1>Register</h1>
-    <form id="register-form">
-        <input type="text" id="register-name" placeholder="Name">
-        <input type="email" id="register-email" placeholder="Email">
-        <input type="password" id="register-password" placeholder="Password">
-        <button type="button" id="register-button">Register</button>
-    </form>
+        <div class="row">
+            <div class="col s12 m6 offset-m3">
+                <div class="card">
+                    <h4 class="center-align">Register</h4>
+                    <form id="register-form">
+                        <div class="input-field">
+                            <input type="text" id="register-name" class="validate" required>
+                            <label for="register-name">Name</label>
+                        </div>
+                        <div class="input-field">
+                            <input type="email" id="register-email" class="validate" required>
+                            <label for="register-email">Email</label>
+                        </div>
+                        <div class="input-field">
+                            <input type="password" id="register-password" class="validate" required>
+                            <label for="register-password">Password</label>
+                        </div>
+                        <button type="button" id="register-button" class="btn waves-effect waves-light">Register</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script type="module" src="../scripts/auth.js"></script>
     <script type="module" src="../scripts/loginHandlers.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uuid@v8.3.2/dist/umd/uuid.min.js"></script>
