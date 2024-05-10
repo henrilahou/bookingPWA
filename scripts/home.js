@@ -1,3 +1,4 @@
+// home.js
 import { db, auth } from './firebase-config.js';
 import { doc, getDoc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
 import { collection, query, where, orderBy, getDocs } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
@@ -102,23 +103,27 @@ async function fetchAndAppendBooking(booking, docId, container, isInvitee) {
 
     console.log('Formatted Time:', bookingDate);
 
-    let actionButtons = '';
-    if (isInvitee && booking.status === 'pending') {
-        actionButtons += `<button onclick="acceptBooking('${docId}')">Accept</button>`;
-    }
+    // Both participants can see the cancel button
+    let actionButtons = `<button class="btn-cancel" onclick="cancelBooking('${docId}')">Cancel</button>`;
 
-    if (booking.bookedBy === currentUserId || booking.bookedWith === currentUserId) {
-        actionButtons += `<button onclick="cancelBooking('${docId}')">Cancel</button>`;
+    if (isInvitee && booking.status === 'pending') {
+        actionButtons += `<button class="btn-accept" onclick="acceptBooking('${docId}')">Accept</button>`;
     }
 
     // Fetch the participant's name based on whether the current user is the organizer or the invitee
     let participantName = isInvitee ? booking.bookedByName : await fetchUserNameByQRCode(booking.bookedWith);
 
+    // Update innerHTML to place the status in the right top corner
     bookingElement.innerHTML = `
-        <span>${bookingDate} - ${booking.location}</span><br>
+        <div class="booking-details">
+            <span>${bookingDate} - ${booking.location}</span>
+            <span class="booking-status">${booking.status}</span>
+        </div>
         <span><strong>Meeting with:</strong> ${participantName || 'N/A'}</span><br>
         <span><strong>Note:</strong> ${booking.note || 'No additional notes'}</span><br>
-        ${actionButtons}
+        <div class="action-buttons">
+            ${actionButtons}
+        </div>
     `;
     container.appendChild(bookingElement);
 }

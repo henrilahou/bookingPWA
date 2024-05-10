@@ -91,3 +91,40 @@ input{
 form .input-field{
     margin-top: 30px;
 }
+
+/* mystyle.css */
+.booking-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.booking-status {
+    font-weight: bold;
+    color: #FF0000; /* Change the color as needed */
+    float: right;
+}
+.action-buttons {
+    margin-top: 10px;
+}
+
+.btn-cancel {
+    background-color: #cac6c6; /* Red color for cancel */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.btn-accept {
+    background-color: #4CAF50; /* Green color for accept */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.btn-cancel:hover, .btn-accept:hover {
+    opacity: 0.8;
+}

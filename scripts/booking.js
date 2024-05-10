@@ -75,6 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
             await addDoc(collection(db, "bookings"), bookingDetails);
             console.log('Booking created successfully!');
             form.reset();
+            window.location.href = '../index.html'; // Redirect to the index page
         } catch (error) {
             console.error('Error creating booking:', error);
         }
