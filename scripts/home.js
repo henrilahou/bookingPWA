@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             userEmailDisplay.textContent = 'Not signed in';
             console.log("No user is signed in.");
+            window.location.href = 'pages/login.html';
         }
     });
 
@@ -48,7 +49,7 @@ function fetchUserDetailsAndDisplayQRCode(userId) {
             if (userData.qrCode) {
                 displayQRCode(userData.qrCode);  // Function to display QR code on the page
                 fetchUpcomingBookings(userId, userData.qrCode);  // Fetch bookings for both userId and qrCode
-                fetchRecentActivities();
+                //fetchRecentActivities();
             } else {
                 console.log("QR Code not found for user.");
             }
