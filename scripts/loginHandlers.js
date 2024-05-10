@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
         login(email, password)
             .then(() => {
                 console.log("User logged in");
-                // Redirect to another page, e.g., home page
                 window.location.href = '../index.html';  // Update with the correct path
             })
             .catch(error => console.error("Login failed", error));
@@ -20,10 +19,10 @@ document.addEventListener('DOMContentLoaded', () => {
     registerButton.addEventListener('click', () => {
         const email = document.getElementById('register-email').value;
         const password = document.getElementById('register-password').value;
-        register(email, password)
+        const name = document.getElementById('register-name').value;
+        register(email, password, name)
             .then(() => {
                 console.log("User registered");
-                // Optionally redirect after registration
                 window.location.href = '../index.html';  // Update with the correct path
             })
             .catch(error => console.error("Registration failed", error));

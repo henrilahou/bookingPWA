@@ -1,3 +1,4 @@
+<!-- booking.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,12 +21,10 @@
         </div>
     </nav>
 
-    <!-- Mobile Navigation -->
     <ul class="sidenav" id="mobile-demo">
         <li><a href="./about.html">About</a></li>
         <li><a href="../index.html">Home</a></li>
     </ul>
-    
 
     <div class="container">
         <h4>Book a Meeting</h4>
@@ -42,6 +41,14 @@
                 <input id="bookedWith" type="text" class="validate" required>
                 <label for="bookedWith">Booked With (Scanned ID)</label>
             </div>
+            <div class="input-field">
+                <input id="bookedWithName" type="text" class="validate" readonly>
+                <label for="bookedWithName">Meeting With</label>
+            </div>
+            <div class="input-field">
+                <textarea id="note" class="materialize-textarea"></textarea>
+                <label for="note">Additional Notes</label>
+            </div>
             <button class="btn waves-effect waves-light" type="submit">Book</button>
         </form>
         <video id="qr-video" style="width: 100%;"></video>
@@ -51,6 +58,5 @@
     <script src="../scripts/booking.js" type="module"></script>
     <script src="https://unpkg.com/@zxing/library@latest" type="module"></script>
     <script src="https://cdn.jsdelivr.net/npm/uuid@v8.3.2/dist/umd/uuid.min.js"></script>
-
 </body>
 </html>

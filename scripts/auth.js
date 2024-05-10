@@ -24,13 +24,14 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 // Register function with QR code generation
-export async function register(email, password) {
+export async function register(email, password, name) {
     try {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const qrCode = uuid.v4();  // Ensure UUID is defined or imported elsewhere in your project
         await setDoc(doc(db, "users", userCredential.user.uid), {
             email: email,
             uid: userCredential.user.uid,
+            name: name,
             qrCode: qrCode,
             createdAt: new Date()
         });
