@@ -15,14 +15,13 @@
             <a href="../index.html" class="brand-logo">Booking<span>PWA</span></a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
-                <li><a href="./about.html">About</a></li>
+                
                 <li><a href="../index.html">Home</a></li>
             </ul>
         </div>
     </nav>
 
     <ul class="sidenav" id="mobile-demo">
-        <li><a href="./about.html">About</a></li>
         <li><a href="../index.html">Home</a></li>
     </ul>
 
@@ -52,11 +51,15 @@
             <button class="btn waves-effect waves-light" type="submit">Book</button>
         </form>
         <video id="qr-video" style="width: 100%;"></video>
-    </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="../scripts/booking.js" type="module"></script>
-    <script src="https://unpkg.com/@zxing/library@latest" type="module"></script>
-    <script src="https://cdn.jsdelivr.net/npm/uuid@v8.3.2/dist/umd/uuid.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="../scripts/booking.js" type="module"></script>
+        <script src="https://unpkg.com/@zxing/library@latest" type="module"></script>
+        <script src="https://cdn.jsdelivr.net/npm/uuid@v8.3.2/dist/umd/uuid.min.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var elems = document.querySelectorAll('.sidenav');
+                var instances = M.Sidenav.init(elems);
+            });
+        </script>
 </body>
 </html>

@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
             window.location.href = '../pages/login.html'; // Redirect to login if not logged in
         }
     });
-
+    
     const videoElem = document.getElementById('qr-video');
     const CodeReader = new ZXing.BrowserMultiFormatReader();
     const form = document.getElementById('booking-form');
